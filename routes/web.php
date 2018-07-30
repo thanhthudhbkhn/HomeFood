@@ -11,6 +11,4 @@
 |
 */
 // dành cho mọi route không có trong routes/api
-Route::get('/{any}', function () {
-    return view('welcome');
-})->where('any','.*');
+Route::get('/{any}','PageController@home')->where('any','.*');
