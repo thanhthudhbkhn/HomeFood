@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+// dành cho mọi route không có trong routes/api
+Route::get('/{any}', 'PageController@home')
+->where('any', '.*');
