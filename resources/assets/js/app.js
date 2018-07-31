@@ -14,3 +14,4 @@ require('./bootstrap');
  */
 
 require('./Main');
+require('./theme');

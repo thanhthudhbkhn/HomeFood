@@ -30,7 +30,7 @@ import FoodsCreate from './pages/foods/Create';
 import FoodsDelete from './pages/foods/Delete';
 import FoodsEdit from './pages/foods/Edit';
 import FoodsIndex from './pages/foods/Index';
-import FoodsShow from './pages/foods/Show';
+import FoodsShow from "./pages/foods/Show";
 // home
 import HomeIndex from './pages/home/Index';
 // transactions
@@ -87,7 +87,7 @@ export default class Main extends Component {
                         <Route exact path = '/foods/:id/delete' component = {FoodsDelete} />
                         <Route exact path = '/foods/:id/edit' component = {FoodsEdit} />
                         <Route exact path = '/foods' component = {FoodsIndex} />
-                        <Route exact path = '/foods/:id' component = {FoodsShow} />
+                        <Route exact path = "/foods/:id" component = {FoodsShow} />
                         {/* home */}
                         <Route exact path = '/' component = {HomeIndex} />
                         <Route exact path = '/home' component = {HomeIndex} />
