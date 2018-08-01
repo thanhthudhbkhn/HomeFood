@@ -1,14 +1,30 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// Theme
+@import "../theme/css/bootstrap.min.css";
+@import "../theme/css/magnific-popup.css";
+@import "../theme/css/jquery.selectBox.css";
+@import "../theme/css/dropzone.css";
+@import "../theme/css/rangeslider.css";
+@import "../theme/css/animate.min.css";
+@import "../theme/css/leaflet.css";
+@import "../theme/css/map.css";
+@import "../theme/css/jquery.mCustomScrollbar.css";
+@import "../theme/fonts/font-awesome/css/font-awesome.min.css";
+@import "../theme/fonts/flaticon/font/flaticon.css";
+@import "../theme/css/style.css";
+@import "../theme/css/skins/default.css";
+@import "./product";
+
+// Custom
+@import "./common";
+@import "./user";
 
 .navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }

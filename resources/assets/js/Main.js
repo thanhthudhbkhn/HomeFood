@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+var browserHistory = require("react-router").browserHistory;
 import { I18nextProvider } from "react-i18next";
-
-import i18n from "./i18n";
+import { Redirect } from 'react-router';
+import axios from "axios";
+import i18n from './i18n';
 import { I18n } from "react-i18next";
 
 // auth
@@ -59,56 +61,63 @@ import Lang from "./components/Lang";
 export default class Main extends Component {
     render() {
         return (
-            <Router>
+            <Router history={browserHistory}>
                 <div>
                     {/* Pages */}
                     <Switch>
                         {/* auth */}
-                        <Route exact path = "/forgot-password" component = {AuthForgotPassword} />
-                        <Route exact path = "/login" component = {AuthLogin} />
-                        <Route exact path = "/register" component = {AuthRegister} />
-                        <Route exact path = "/reset-password" component = {AuthResetPassword} />
+                        <Route exact path="/forgot-password" component={AuthForgotPassword} />
+                        <Route exact path="/login" component={AuthLogin} />
+                        <Route exact path="/register" component={AuthRegister} />
+                        <Route exact path="/reset-password" component={AuthResetPassword} />
                         {/* categories */}
-                        <Route exact path = "/categories/create" component = {CategoriesCreate} />
-                        <Route exact path = "/categories/:id/delete" component = {CategoriesDelete} />
-                        <Route exact path = "/categories/:id/edit" component = {CategoriesEdit} />
-                        <Route exact path = "/categories" component = {CategoriesIndex} />
-                        <Route exact path = "/categories/:id" component = {CategoriesShow} />
+                        <Route exact path="/categories/create" component={CategoriesCreate} />
+                        <Route exact path="/categories/:id/delete" component={CategoriesDelete} />
+                        <Route exact path="/categories/:id/edit" component={CategoriesEdit} />
+                        <Route exact path="/categories" component={CategoriesIndex} />
+                        <Route exact path="/categories/:id" component={CategoriesShow} />
                         {/* error */}
-                        <Route exact path = "/error" component = {ErrorShow} />
+                        <Route exact path="/error" component={ErrorShow} />
                         {/* favorites */}
-                        <Route exact path = "/favorites/create" component = {FavoritesCreate} />
-                        <Route exact path = "/favorites/:id/delete" component = {FavoritesDelete} />
-                        <Route exact path = "/favorites/:id/edit" component = {FavoritesEdit} />
-                        <Route exact path = "/favorites" component = {FavoritesIndex} />
-                        <Route exact path = "/favorites/:id" component = {FavoritesShow} />
+                        <Route exact path="/favorites/create" component={FavoritesCreate} />
+                        <Route exact path="/favorites/:id/delete" component={FavoritesDelete} />
+                        <Route exact path="/favorites/:id/edit" component={FavoritesEdit} />
+                        <Route exact path="/favorites" component={FavoritesIndex} />
+                        <Route exact path="/favorites/:id" component={FavoritesShow} />
                         {/* foods */}
-                        <Route exact path = "/foods/create" component = {FoodsCreate} />
-                        <Route exact path = "/foods/:id/delete" component = {FoodsDelete} />
-                        <Route exact path = "/foods/:id/edit" component = {FoodsEdit} />
-                        <Route exact path = "/foods" component = {FoodsIndex} />
-                        <Route exact path = "/foods/:id" component = {FoodsShow} />
+                        <Route exact path="/foods/create" component={FoodsCreate} />
+                        <Route exact path="/foods/:id/delete" component={FoodsDelete} />
+                        {/* <Route exact path="/foods/:id/edit" component={FoodsEdit} onEnter={this.requireAuth} /> */}
+                        < Route exact path = "/foods/:id/edit"
+                        render = {
+                            () => (
+                                localStorage.getItem("loggedIn") ? (<Redirect to = "/foods/:id/edit" />) : (<Redirect to = "/login" />)
+                            )
+                        }
+                        />
+                        <Route exact path="/foods" component={FoodsIndex} />
+                        <Route exact path="/foods/:id" component={FoodsShow} />
                         {/* home */}
-                        <Route exact path = "/" component = {HomeIndex} />
-                        <Route exact path = "/home" component = {HomeIndex} />
+                        <Route exact path="/" component={HomeIndex} />
+                        <Route exact path="/home" component={HomeIndex} />
                         {/* transactions */}
-                        <Route exact path = "/transactions/create" component = {TransactionsCreate} />
-                        <Route exact path = "/transactions/:id/delete" component = {TransactionsDelete} />
-                        <Route exact path = "/transactions/:id/edit" component = {TransactionsEdit} />
-                        <Route exact path = "/transactions" component = {TransactionsIndex} />
-                        <Route exact path = "/transactions/:id" component = {TransactionsShow} />
+                        <Route exact path="/transactions/create" component={TransactionsCreate} />
+                        <Route exact path="/transactions/:id/delete" component={TransactionsDelete} />
+                        <Route exact path="/transactions/:id/edit" component={TransactionsEdit} />
+                        <Route exact path="/transactions" component={TransactionsIndex} />
+                        <Route exact path="/transactions/:id" component={TransactionsShow} />
                         {/* users */}
-                        <Route exact path = "/users/create" component = {UsersCreate} />
-                        <Route exact path = "/users/:id/delete" component = {UsersDelete} />
-                        <Route exact path = "/users/:id/edit" component = {UsersEdit} />
-                        <Route exact path = "/users" component = {UsersIndex} />
-                        <Route exact path = "/users/:id" component = {UsersShow} />
+                        <Route exact path="/users/create" component={UsersCreate} />
+                        <Route exact path="/users/:id/delete" component={UsersDelete} />
+                        <Route exact path="/users/:id/edit" component={UsersEdit} />
+                        <Route exact path="/users" component={UsersIndex} />
+                        <Route exact path="/users/:id" component={UsersShow} />
                         {/* votes */}
-                        <Route exact path = "/votes/create" component = {VotesCreate} />
-                        <Route exact path = "/votes/:id/delete" component = {VotesDelete} />
-                        <Route exact path = "/votes/:id/edit" component = {VotesEdit} />
-                        <Route exact path = "/votes" component = {VotesIndex} />
-                        <Route exact path = "/votes/:id" component = {VotesShow} />
+                        <Route exact path="/votes/create" component={VotesCreate} />
+                        <Route exact path="/votes/:id/delete" component={VotesDelete} />
+                        <Route exact path="/votes/:id/edit" component={VotesEdit} />
+                        <Route exact path="/votes" component={VotesIndex} />
+                        <Route exact path="/votes/:id" component={VotesShow} />
                     </Switch>
                     {/* common */}
                     <ModalCanvasSidebar/>
@@ -120,6 +129,7 @@ export default class Main extends Component {
     }
 }
 
+
 if (document.getElementById("root")) {
-    ReactDOM.render(<I18nextProvider i18n = { i18n }><Main /></I18nextProvider>, document.getElementById("root"));
+    ReactDOM.render(<I18nextProvider i18n={ i18n }><Main /></I18nextProvider>, document.getElementById("root"));
 }
